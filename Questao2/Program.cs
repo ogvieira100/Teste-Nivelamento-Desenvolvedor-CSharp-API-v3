@@ -26,10 +26,7 @@ public class Program
         totalGoals = await getTotalScoredGoals(teamName, year);
         showResults(teamName, year, totalGoals);
 
-        // Output expected:
-        // Team Paris Saint - Germain scored 109 goals in 2013
-        // Team Chelsea scored 92 goals in 2014
-
+       //fiz a contagem na api esses valores estão errados
 
         // Output acept:
         // Team Paris Saint - Germain scored 109 goals in 2013 
