@@ -9,7 +9,7 @@ namespace Questao5.Application.Commands.Requests
 
         public string TipoMovimento { get; set; } = "";
 
-        public int NumeroContaCorrente { get; set; }
+        public int Numero { get; set; }
 
         public decimal Valor { get; set; }
 

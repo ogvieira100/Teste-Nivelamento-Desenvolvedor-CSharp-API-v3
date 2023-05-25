@@ -103,7 +103,7 @@ namespace Questao5.Application.Handlers
             if (request.Valor <= 0)
                 _notifications.Add(new Notifications { Message = _languageSystem.InvalidValue() });
 
-            var numeroConta = request.NumeroContaCorrente;
+            var numeroConta = request.Numero;
 
             ContaCorrente? contaCorrente = await CurrentAccountIsValid(numeroConta);
 

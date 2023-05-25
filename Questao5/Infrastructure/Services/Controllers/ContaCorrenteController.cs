@@ -49,7 +49,7 @@ namespace Questao5.Infrastructure.Services.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] ObterSaldoContaCorrenteQuery getProjectRequest)
+        public async Task<IActionResult> ObterSaldoConta([FromQuery] ObterSaldoContaCorrenteQuery getProjectRequest)
                     => await ExecControllerAsync(() => _mediator.Send(getProjectRequest));
     }
 }
