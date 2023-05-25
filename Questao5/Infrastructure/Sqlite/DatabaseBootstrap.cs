@@ -10,6 +10,7 @@ namespace Questao5.Infrastructure.Sqlite
         public DatabaseBootstrap(DatabaseConfig databaseConfig)
         {
             this.databaseConfig = databaseConfig;
+
         }
 
         public void Setup()

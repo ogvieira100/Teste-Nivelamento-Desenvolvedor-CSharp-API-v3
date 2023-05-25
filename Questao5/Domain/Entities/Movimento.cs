@@ -8,9 +8,10 @@ namespace Questao5.Domain.Entities
     {
         public Guid IdMovimento { get; set; }
         public virtual Guid IdContaCorrente { get; set; }
-        public virtual ContaCorrente ContaCorrente { get; set; }
-        public DateTime DataMovimento { get; set; }
-        public string TipoMovimento { get; set; }
+        public virtual ContaCorrente ContaCorrente { get; set; } = new ContaCorrente();
+        public string DataMovimento { get; set; } = DateTime.Now.ToShortDateString();
+        public string TipoMovimento { get; set; } = "C";
+        public decimal Valor { get; set; }
 
         public TipoMovimentoEnum TipoMovimentoEnum
         {
@@ -25,8 +26,7 @@ namespace Questao5.Domain.Entities
 
         public Movimento()
         {
-            TipoMovimento = "D";
-            DataMovimento = DateTime.Now;
+            IdMovimento = Guid.NewGuid();
         }
 
     }

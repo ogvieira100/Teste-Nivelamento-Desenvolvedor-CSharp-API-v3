@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
 	<PackageReference Include="Dapper" Version="2.0.35" />
@@ -33,16 +36,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Commands\Requests\" />
-    <Folder Include="Application\Commands\Responses\" />
-    <Folder Include="Application\Handlers\" />
-    <Folder Include="Application\Queries\Requests\" />
-    <Folder Include="Application\Queries\Responses\" />
-    <Folder Include="Domain\Language\" />
     <Folder Include="Infrastructure\Database\CommandStore\Requests\" />
     <Folder Include="Infrastructure\Database\CommandStore\Responses\" />
-    <Folder Include="Infrastructure\Database\Uow\" />
-    <Folder Include="Infrastructure\Database\Repository\" />
     <Folder Include="Infrastructure\Database\QueryStore\Requests\" />
     <Folder Include="Infrastructure\Database\QueryStore\Responses\" />
   </ItemGroup>
