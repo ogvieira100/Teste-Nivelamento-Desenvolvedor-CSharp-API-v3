@@ -21,9 +21,9 @@ namespace Questao5.Infrastructure.Database.Mapping
 
             builder.Property(c => c.Resultado)
                 .HasColumnName("resultado");
-            
 
-           
+
+            builder.ToTable("idemponderancia");
 
         }
     }

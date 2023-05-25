@@ -4,7 +4,7 @@ namespace Questao5.Domain.Repository
 {
     public interface IBaseConsultRepository<TEntity> : IDisposable where TEntity : class
     {
-        Task<IEnumerable<TEntity>> SearchAsync(Expression<Func<TEntity, bool>> predicate);
+        Task<IEnumerable<TEntity>> SearchAsync(Expression<Func<TEntity, bool>> predicate,bool asnotracking = false);
         IQueryable<TEntity> GetQueryable();
         Task<TEntity> GetByIdAsync(Int64 id);
         Task<IEnumerable<TEntity>> GetAllAsync();

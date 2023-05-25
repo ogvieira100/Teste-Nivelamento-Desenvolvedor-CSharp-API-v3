@@ -7,7 +7,7 @@ namespace Questao5.Application.Commands.Requests
     public class MovimentarContaCorrenteCommand:IRequest<MovimentarContaCorrenteResponse>
     {
 
-        public TipoMovimentoEnum TipoMovimento { get; set; } = TipoMovimentoEnum.Credito;
+        public string TipoMovimento { get; set; } = "";
 
         public int NumeroContaCorrente { get; set; }
 

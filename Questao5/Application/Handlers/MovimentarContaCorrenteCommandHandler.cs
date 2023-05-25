@@ -8,6 +8,7 @@ using Questao5.Domain.Entities;
 using Questao5.Domain.Language;
 using Questao5.Domain.Repository;
 using Questao5.Infrastructure.CrossCutting;
+using System.Linq;
 
 namespace Questao5.Application.Handlers
 {
@@ -23,6 +24,7 @@ namespace Questao5.Application.Handlers
         readonly IMapper _mapper;
 
         public MovimentarContaCorrenteCommandHandler(IBaseRepository<ContaCorrente> contaCorrenteRepository
+                                                    , IBaseRepository<Movimento> movimentoRepository
                                                     , LNotifications notifications
                                                     , IMapper mapper
                                                     , ILanguageSystem languageSystem
@@ -30,6 +32,7 @@ namespace Questao5.Application.Handlers
         {
             _contaCorrenteRepository = contaCorrenteRepository;
             _notifications = notifications ?? new LNotifications();
+            _movimentoRepository = movimentoRepository;
             _languageSystem = languageSystem;
             _mapper = mapper;
         }
@@ -44,7 +47,13 @@ namespace Questao5.Application.Handlers
             var movimentoAdd = _mapper.Map<Movimento>(request);
 
             if (contaCorrente is not null)
-                contaCorrente.Movimentos.Add(movimentoAdd);
+            {
+              
+                movimentoAdd.IdContaCorrente = contaCorrente.ContaCorrenteId;
+                _movimentoRepository.Add(movimentoAdd);
+              
+            }
+            
 
             await _movimentoRepository.UnitOfWork.CommitAsync();
             return resp;
@@ -82,12 +91,15 @@ namespace Questao5.Application.Handlers
 
 
             resp = _mapper.Map<ObterSaldoContaCorrenteViewModel>(contaCorrente);
-            resp.Saldo = string.Format("C", ( valorCredito +  (valorDebito * -1)));
+            resp.Saldo = String.Format("{0:C}", ( valorCredito +  (valorDebito * -1)));
             return resp;
         }
 
         async Task<ContaCorrente?> MovimentIsValid(MovimentarContaCorrenteCommand request)
         {
+
+            string[] tipoMovimentoValid = { "C", "D" };
+
             if (request.Valor <= 0)
                 _notifications.Add(new Notifications { Message = _languageSystem.InvalidValue() });
 
@@ -95,7 +107,7 @@ namespace Questao5.Application.Handlers
 
             ContaCorrente? contaCorrente = await CurrentAccountIsValid(numeroConta);
 
-            if (!Enum.IsDefined(request.TipoMovimento))
+            if (!tipoMovimentoValid.Any(x=> x == request.TipoMovimento))
                 _notifications.Add(new Notifications { Message = _languageSystem.InvalidType() });
 
             return contaCorrente;
@@ -103,7 +115,7 @@ namespace Questao5.Application.Handlers
 
         async Task<ContaCorrente?> CurrentAccountIsValid(int numeroConta)
         {
-            var contaCorrente = (await _contaCorrenteRepository.RepositoryConsult.SearchAsync(x => x.Numero == numeroConta))
+            var contaCorrente = (await _contaCorrenteRepository.RepositoryConsult.SearchAsync(x => x.Numero == numeroConta,true))
                                   ?.FirstOrDefault();
 
             if (contaCorrente is null)

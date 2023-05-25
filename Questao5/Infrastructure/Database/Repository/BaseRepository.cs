@@ -24,7 +24,7 @@ namespace Questao5.Infrastructure.Database.Repository
             DbSet = _aplicationContext.Set<TEntity>();
             RepositoryConsult = repositoryConsult;
         }
-        public void Add(TEntity entity) => DbSet.Add(entity);
+        public void Add(TEntity entity) => _aplicationContext.Entry(entity).State = EntityState.Added;
 
         public void Dispose() => GC.SuppressFinalize(this);
 
@@ -32,7 +32,7 @@ namespace Questao5.Infrastructure.Database.Repository
 
         public void Remove<T>(T entity) where T : class => _aplicationContext.Set<T>().Remove(entity);
 
-        public void Update(TEntity entity) => DbSet.Update(entity);
+        public void Update(TEntity entity) => _aplicationContext.Entry(entity).State = EntityState.Modified;
 
         public async Task AddAsync(TEntity entidade) => await DbSet.AddAsync(entidade);
 

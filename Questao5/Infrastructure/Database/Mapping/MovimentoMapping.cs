@@ -35,6 +35,8 @@ namespace Questao5.Infrastructure.Database.Mapping
             builder.HasOne(x => x.ContaCorrente)
                .WithMany(x => x.Movimentos)
                .HasForeignKey(x => x.IdMovimento);
+
+            builder.ToTable("movimento");
         }
     }
 }

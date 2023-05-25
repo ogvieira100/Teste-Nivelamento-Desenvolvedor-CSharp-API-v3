@@ -29,6 +29,8 @@ namespace Questao5.Infrastructure.Database.Mapping
                .HasDefaultValue(true)
                .IsRequired();
 
+            builder.ToTable("contacorrente");
+
         }
     }
 }
