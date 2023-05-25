@@ -82,7 +82,7 @@ namespace Questao5.Application.Handlers
 
 
             resp = _mapper.Map<ObterSaldoContaCorrenteViewModel>(contaCorrente);
-            resp.Saldo = valorCredito +  (valorDebito * -1);
+            resp.Saldo = string.Format("C", ( valorCredito +  (valorDebito * -1)));
             return resp;
         }
 
