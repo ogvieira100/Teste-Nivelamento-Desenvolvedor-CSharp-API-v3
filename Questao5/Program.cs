@@ -48,6 +48,9 @@ builder.Services.AddAutoMapper(typeof(CommandToDomainMappingProfile));
 
 builder.Services.AddTransient(typeof(IBaseConsultRepository<>), typeof(RepositoryConsult<>));
 
+builder.Services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+
+
 //Add Entity Framework SqlLite
 var connectionString = configuration.GetConnectionString("DefaultConnection");
 

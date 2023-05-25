@@ -4,7 +4,7 @@ using Questao5.Infrastructure.Database.Context;
 
 namespace Questao5.Infrastructure.Database.Repository
 {
-    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
+    public  class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
         public IUnitOfWork UnitOfWork { get; }
 
@@ -13,7 +13,7 @@ namespace Questao5.Infrastructure.Database.Repository
         readonly DbSet<TEntity> DbSet;
 
         readonly AplicationContext _aplicationContext;
-        protected BaseRepository(IUnitOfWork unitOfWork,
+        public BaseRepository(IUnitOfWork unitOfWork,
                                 AplicationContext aplicationContext,
                                 IBaseConsultRepository<TEntity> repositoryConsult
 
